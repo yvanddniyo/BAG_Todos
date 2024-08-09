@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Radio_Canada } from "next/font/google";
 import "./globals.css";
+import { Providers } from "./provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const radio = Radio_Canada({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={radio.className}>
+        <Providers>
+        {children}
+        </Providers>
+      </body>
     </html>
   );
 }
