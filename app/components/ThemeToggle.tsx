@@ -30,5 +30,4 @@ export default function ThemeSwitch() {
   if (resolvedTheme === 'light') {
     return <FiMoon onClick={() => setTheme('dark')} />
   }
-
 }
