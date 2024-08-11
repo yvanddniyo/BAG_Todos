@@ -28,14 +28,14 @@ export default function Home() {
     >
         <div style={{
         position: 'absolute',
-        backgroundColor: 'red',
+        backgroundColor: '#f26d0f',
         borderRadius: '50%',
         transform: `translate(${position.x}px, ${position.y}px)`,
         left: -10,
         opacity: 0.75,
         top: -10,
-        width: 40,
-        height: 40,
+        width: 60,
+        height: 60,
       }} />
       <motion.div
         initial={{ x: -200, opacity: 0 }}
