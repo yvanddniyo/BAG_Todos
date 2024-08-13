@@ -9,6 +9,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { CiEdit } from "react-icons/ci"
 import { MdDelete } from "react-icons/md"
@@ -17,7 +18,8 @@ import { MdDelete } from "react-icons/md"
     return (
       <AlertDialog>
         <AlertDialogTrigger asChild>
-         <CiEdit  />
+         {/* <Button><CiEdit  /></Button> */}
+         <Button>Update</Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader  className="my-4">

@@ -1,24 +1,20 @@
 'use server'
-import ThemeSwitch from "@/app/components/ThemeToggle";
 import { Dark } from "@/app/ui/darkMode/darkMode";
-import { getData } from "@/src/actions/todoActions";
-import AddTodo from "@/src/components/addTodo";
-import Todo from "@/src/components/todo";
-import { todoType } from "@/src/types/todoTypes";
+import { addTodo, getData } from "@/lib/actions/todoActions";
+import AddTodo from "@/lib/components/addTodo";
+import Todo from "@/lib/components/todo";
+import { todoType } from "@/lib/types/todoTypes";
 
-interface Props {
-  todos: todoType[];
-}
 export default async function page (){
-  const data = await getData()
-  console.log(data);
+  const data = await getData();
+  console.log('Data:', data);
   
  return(
    <main className="w-full md:px-12 py-12 px-3">
-      <Dark />
+       <Dark />
       <AddTodo />
-      {/* <Todos todos={[]} /> */}
-      <Todo todo={data}/>
+      {/* @ts-ignore */}
+      <Todo /> 
    </main>
  )
 }

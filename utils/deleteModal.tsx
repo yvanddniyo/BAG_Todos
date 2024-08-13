@@ -16,7 +16,8 @@ import { MdDelete } from "react-icons/md"
     return (
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <MdDelete />
+          {/* <Button ><MdDelete className="text-red-500"/></Button> */}
+          <Button style={{color: 'white', backgroundColor: "red"}}>Delete</Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
