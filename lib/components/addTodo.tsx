@@ -46,41 +46,46 @@ export default function AddTodo() {
   return (
     <>
       <div className="w-full flex justify-center items-center flex-col">
-        <h1 className="pt-20 text-center pb-6 text-gray-500 font-[800] text-2xl">
+        <h1 className="pt-16 text-center pb-6 text-gray-500 font-[800] text-2xl">
           Todo List
         </h1>
       </div>
       <form
-        className="flex flex-col justify-center items-center gap-6 mb-12"
+        className="flex flex-col justify-center items-center gap-4 mb-12"
         onSubmit={handleSubmit(onCreateTodo)}
       >
-        <Controller
-          name="title"
-          control={control}
-          render={({ field }) => (
-            <Input
-              type="text"
-              placeholder="Title"
-              className="md:w-[40%] mx-4 outline-none shadow-md px-2 border rounded"
-              {...field}
-            />
-          )}
-        />
-        {errors.title && <p className="text-red-500">{errors.title.message}</p>}
-        <Controller
-          name="description"
-          control={control}
-          render={({ field }) => (
-            <Textarea
-              placeholder="Description"
-              className="md:w-[40%] mx-4 outline-none shadow-md px-2 border rounded"
-              {...field}
-            />
-          )}
-        />
+        <div className="w-full flex justify-center flex-col items-center">
+          <Controller
+            name="title"
+            control={control}
+            render={({ field }) => (
+              <Input
+                type="text"
+                placeholder="Title"
+                className="md:w-[40%] mx-4 outline-none shadow-md px-2 border rounded"
+                {...field}
+              />
+            )}
+          />
+          {errors.title && <p className="text-red-500">{errors.title.message}</p>}
+        </div>
+
+        <div className="w-full flex justify-center flex-col items-center">
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }) => (
+              <Textarea
+                placeholder="Description"
+                className="md:w-[40%] mx-4 outline-none shadow-md px-2 border rounded"
+                {...field}
+              />
+            )}
+          />
         {errors.description && (
           <p className="text-red-500">{errors.description.message}</p>
         )}
+        </div>
         <Button className="px-3" type="submit">
           {isPending ? "Adding..." : "Add a Task"}
         </Button>

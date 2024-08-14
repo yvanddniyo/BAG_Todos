@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useState } from "react";
+import Link from "next/link";
 
 const lete = Lateef({
   subsets: ["latin"],
@@ -47,12 +48,12 @@ export default function Home() {
         transition={{ ease: "easeInOut", duration: 1.1 }}
         className="flex justify-center md:pt-44 pt-24 flex-col items-center"
       >
-        <h3 className="text-4xl">
-          Welcome{" "}
-          <span className="text-orange-600 font-[700] drop-shadow">
-            Todo-app
-          </span>{" "}
-        </h3>
+        <h3 className="md:text-4xl text-2xl">
+               Todo-
+              <span className="text-orange-600 font-[700] drop-shadow">
+                app
+              </span>{" "}
+            </h3>
         <p
           className={`md:text-3xl pt-4 text-center text-[23px]  ${lete.className}`}
         >
@@ -76,9 +77,13 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col md:flex-row gap-6 py-4 ">
-            <button className="bg-orange-900 text-white rounded-lg py-2 px-4 hover:border-[0.1px] border-gray-500 flex items-center gap-1">
-              Sign Up with Google <FcGoogle />
-            </button>
+            <Link
+              href={"/todos/create"}
+             >
+              <button className="bg-orange-900 text-white rounded-lg py-2 px-4 hover:border-[0.1px] border-gray-500 flex items-center gap-1">
+                Sign Up with Google <FcGoogle />
+              </button>
+            </Link>
             <button className="bg-orange-900 text-white rounded-lg py-2 px-4 hover:border-[0.1px] border-gray-500 flex items-center gap-1">
               Sign Up with GitHub
               <FaGithub />

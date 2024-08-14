@@ -77,7 +77,7 @@ export default function Todo() {
           key={item.id}
           className="w-full flex justify-center items-center mt-4"
         >
-          <div className={`md:w-[70%] border flex items-center justify-between gap-6 md:px-8 px-1 py-4 rounded-lg ${item.done ? 'bg-gray-400' : ''}`}>
+          <div className={`md:w-[50%] border-[0.1px] shadow-lg flex items-center justify-between gap-6 md:px-8 px-1 pt-4 rounded-lg ${item.done ? 'bg-slate-800 ' : ''}`}>
             <div>
               <Checkbox
                 checked={item.done}
@@ -89,12 +89,12 @@ export default function Todo() {
               <p className={`md:text-[14px] text-[12px] text-center ${item.done ? 'line-through' : ''}`}>
                 {item.description}
               </p>
-              <p className="text-xs text-gray-500 text-left pt-6">
+              <p className="text-xs text-gray-500 text-left pt-6 pb-1">
                 Created at: {moment(item.createdAt).format('MMMM D, YYYY h:mm A')}
               </p>
             </div>
-            <div className="md:flex items-center gap-3">
-              <div className="text-3xl cursor-pointer hover:text-blue-500 transition-all duration-300 mb-2">
+            <div className="flex md:flex-row flex-col items-center gap-3">
+              <div className="text-3xl cursor-pointer hover:text-blue-500 transition-all duration-300">
                 <UpdateAlert
                   disables = {item.done}
                   todo={item}

@@ -12,9 +12,8 @@ export default async function page (){
   
  return(
    <main className="w-full md:px-12 py-12 px-3">
-       <Dark />
+      <Dark />
       <AddTodo />
-      {/* @ts-ignore */}
       <Todo /> 
    </main>
  )
