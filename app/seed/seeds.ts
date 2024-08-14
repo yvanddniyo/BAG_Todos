@@ -19,9 +19,9 @@ const seedTodo = async () => {
 };
 
 const main = async () => {
-  console.log('🧨 Started seeding the database...\n');
+  console.log('Started seeding the database...');
   await seedTodo();
-  console.log('\n🧨 Done seeding the database successfully...\n');
+  console.log('Done seeding the database successfully...');
 };
 
 main();

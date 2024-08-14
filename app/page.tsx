@@ -12,32 +12,35 @@ const lete = Lateef({
 });
 
 export default function Home() {
-  const [position, setPosition] = useState({x: 0, y: 0})
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   return (
-    <main 
-    onPointerMove={
-      e => setPosition({
-        x: e.clientX,
-        y: e.clientY, 
-      })}
+    <main
+      onPointerMove={(e) =>
+        setPosition({
+          x: e.clientX,
+          y: e.clientY,
+        })
+      }
       style={{
-        position: 'relative',
-        width: '100vw',
-        height: '100vh',
+        position: "relative",
+        width: "100vw",
+        height: "100vh",
       }}
-     className="bg-[#121212] min-h-[100vh] text-white"
+      className="bg-[#121212] min-h-[100vh] text-white"
     >
-        <div style={{
-        position: 'absolute',
-        backgroundColor: '#f26d0f',
-        borderRadius: '50%',
-        transform: `translate(${position.x}px, ${position.y}px)`,
-        left: -10,
-        opacity: 0.75,
-        top: -10,
-        width: 60,
-        height: 60,
-      }} />
+      <div
+        style={{
+          position: "absolute",
+          backgroundColor: "#f26d0f",
+          borderRadius: "50%",
+          transform: `translate(${position.x}px, ${position.y}px)`,
+          left: -10,
+          opacity: 0.75,
+          top: -10,
+          width: 60,
+          height: 60,
+        }}
+      />
       <motion.div
         initial={{ x: -200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -47,7 +50,7 @@ export default function Home() {
         <h3 className="text-4xl">
           Welcome{" "}
           <span className="text-orange-600 font-[700] drop-shadow">
-            ToDo app
+            Todo-app
           </span>{" "}
         </h3>
         <p
@@ -57,9 +60,9 @@ export default function Home() {
         </p>
       </motion.div>
       <motion.div
-       initial={{ x: 200, opacity: 0 }}
-       animate={{ x: 0, opacity: 1.1 }}
-       transition={{ease:'easeInOut', duration: 1.1 }}
+        initial={{ x: 200, opacity: 0 }}
+        animate={{ x: 0, opacity: 1.1 }}
+        transition={{ ease: "easeInOut", duration: 1.1 }}
       >
         <div className=" md:w-[60%] lg:w-[45%] flex justify-center md:mx-auto flex-col items-center border-[0.2px] mt-20 py-4 px-5 border-gray-500 rounded-lg mx-4">
           <div className="text-center">

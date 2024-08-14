@@ -44,13 +44,24 @@ export const toggleTodo = async (id: number) => {
     revalidatePath('/');
 }
 
-export const updateTodo = async(id: number, title: string, description: string) => {
+export const updateTodo = async (id: number, title?: string, description?: string) => {
+    if (!title && !description) {
+        throw new Error('No values to update');
+    }
+    const updates: Partial<{ title: string, description: string }> = {};
+
+    if (title) {
+        updates.title = title;
+    }
+
+    if (description) {
+        updates.description = description;
+    }
+
     await db
-    .update(todos)
-    .set({
-        title: title,
-        description: description
-    })
-    .where(eq(todos.id, id))
-    revalidatePath('/') 
+        .update(todos)
+        .set(updates)
+        .where(eq(todos.id, id));
+        
+    revalidatePath('/');
 }

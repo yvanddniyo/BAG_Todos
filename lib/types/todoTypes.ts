@@ -6,3 +6,8 @@ export type todoType = {
     description: string;
     done: boolean;
 }
+
+export type TodoType = {
+    title: string,
+    description: string,
+}

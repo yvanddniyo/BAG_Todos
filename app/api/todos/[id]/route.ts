@@ -12,14 +12,24 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: numbe
 }
 
 export async function PATCH(req: NextRequest, { params }: { params: { id: number } }) {
-    const todo = await getTodoById(params.id);
-    if (!todo) {
-        return NextResponse.json({ message: "Todo not found" }, { status: 404 });
-    }
-    const { title, description } = await req.json();
-    await updateTodo(params.id, title, description);
-    return NextResponse.json({ message: 'Todo updated successfully' });
+  const todo = await getTodoById(params.id);
+  
+  if (!todo) {
+    return NextResponse.json({ message: "Todo not found" }, { status: 404 });
+  }
+
+  const { title, description } = await req.json();
+  
+  // Check if at least one field is provided
+  if (!title && !description) {
+    return NextResponse.json({ message: "No values to update" }, { status: 400 });
+  }
+
+  await updateTodo(params.id, title, description);
+  
+  return NextResponse.json({ message: 'Todo updated successfully' });
 }
+
 
 
 export async function PUT(req: NextRequest, { params }: { params: { id: number } }) {
