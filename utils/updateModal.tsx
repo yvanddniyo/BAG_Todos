@@ -36,7 +36,7 @@ export function UpdateAlert({ todo, onUpdate, isLoading }: UpdateAlertProps) {
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogTrigger asChild>
         <Button onClick={() => setIsOpen(true)} disabled={isLoading}>
-          {isLoading ? 'Updating...' : 'Update'}
+          {isLoading ? 'updating...' : 'Update'}
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

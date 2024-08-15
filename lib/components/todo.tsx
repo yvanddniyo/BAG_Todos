@@ -8,8 +8,10 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { deleteTodos, fetchTodos, toggleTodos, updateTodos } from "@/hooks/todoAPI";
 import moment from 'moment'
 import { ToastContainer, toast } from "react-toastify"
+import { useState } from "react";
 
 export default function Todo() {
+  const [id, setId] = useState<number | null>(null)
   const queryClient = useQueryClient();
 
   const { data, error, isLoading } = useQuery({
@@ -26,7 +28,12 @@ export default function Todo() {
   });
 
   const handleDelete = (id: number) => {
-    deleteMutation.mutate(id);
+    setId(id)
+    deleteMutation.mutate(id,  {
+      onSettled: () => {
+        setId(null);
+      }});
+    
   };
 
   const updateMutation = useMutation({
@@ -41,8 +48,11 @@ export default function Todo() {
   })
 
   const handleUpdate = (id: number, updatedData: { title?: string; description?: string }) => {
-    console.log('handleUpdate called with:', id, updatedData);
-    updateMutation.mutate({ id, data: updatedData });
+    setId(id)
+    updateMutation.mutate({ id, data: updatedData }, {
+      onSettled: () => {
+        setId(null)
+    }});
   };
 
   const toggleMutation = useMutation({
@@ -60,7 +70,6 @@ export default function Todo() {
   })
 
   const handleToggle = (id: number, done: boolean) => {
-    console.log('handleToggle called with:', id, done);
     toggleMutation.mutate({ id, toggle: { done: !done } });
   }
 
@@ -99,13 +108,13 @@ export default function Todo() {
                   disables = {item.done}
                   todo={item}
                   onUpdate={(updatedData: any) => handleUpdate(item.id, updatedData)}
-                  isLoading={updateMutation.isPending}
+                  isLoading={id === item.id}
                 />
               </div>
               <div className="text-3xl cursor-pointer hover:text-red-500 transition-all duration-300">
                 {<DeleteAlert
                   onDelete={() => handleDelete(item.id)}
-                  isLoading={deleteMutation.isPending}
+                  isLoading={id === item.id}
                 />}
               </div>
             </div>
