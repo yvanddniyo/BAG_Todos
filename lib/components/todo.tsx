@@ -12,6 +12,7 @@ import { useState } from "react";
 
 export default function Todo() {
   const [id, setId] = useState<number | null>(null)
+  const [idUpdate, setIdUpdate] = useState<number | null>(null)
   const queryClient = useQueryClient();
 
   const { data, error, isLoading } = useQuery({
@@ -48,10 +49,10 @@ export default function Todo() {
   })
 
   const handleUpdate = (id: number, updatedData: { title?: string; description?: string }) => {
-    setId(id)
+    setIdUpdate(id)
     updateMutation.mutate({ id, data: updatedData }, {
       onSettled: () => {
-        setId(null)
+        setIdUpdate(null)
     }});
   };
 
@@ -74,7 +75,9 @@ export default function Todo() {
   }
 
   if (isLoading) return <div className="flex justify-center">Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div className=" md:w-[70%] border-[0.5px] px-2 py-2 flex justify-center items-center">
+    <p className="">Unknown error occured</p>
+  </div>;
 
   return (
     <>
@@ -108,7 +111,7 @@ export default function Todo() {
                   disables = {item.done}
                   todo={item}
                   onUpdate={(updatedData: any) => handleUpdate(item.id, updatedData)}
-                  isLoading={id === item.id}
+                  isLoading={idUpdate === item.id}
                 />
               </div>
               <div className="text-3xl cursor-pointer hover:text-red-500 transition-all duration-300">
