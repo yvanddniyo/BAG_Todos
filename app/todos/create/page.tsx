@@ -13,7 +13,6 @@ export default async function page (){
   if (!session?.user) {
     redirect("/api/auth/signin")
   }  
-  console.log(session.user);
  return(
    <main className="w-full md:px-12 py-12 px-3">
       <Dark 
