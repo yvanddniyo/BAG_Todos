@@ -9,20 +9,16 @@ import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
 export default async function page (){
-  const session = await auth()
+  const session:any = await auth()
   if (!session?.user) {
     redirect("/api/auth/signin")
-  }
-  
-  const data = await getData();
-  console.log('Data:', data);
-  
+  }  
+  console.log(session.user);
  return(
-  // <pre>
-  //   {JSON.stringify(session, null, 2)}
-  // </pre>
    <main className="w-full md:px-12 py-12 px-3">
-      <Dark />
+      <Dark 
+       session = {session?.user}
+      />
       <AddTodo />
       <Todo /> 
    </main>

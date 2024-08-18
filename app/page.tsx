@@ -3,8 +3,10 @@
 import { Lateef } from "next/font/google";
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
+// import {FaGoogle} from "react-icons/fa";
 import { useState, useEffect } from "react";
-import { handleSignIn } from "./serverAction";
+import { FcGoogle } from "react-icons/fc";
+import { handleSignIn, handleSignInGoogle } from "./serverAction";
 
 const lete = Lateef({
   subsets: ["latin"],
@@ -85,17 +87,27 @@ export default function Home() {
               perform don't right time the right time is now.
             </p>
           </div>
-          <form
-          action={handleSignIn}
-            className="flex flex-col md:flex-row gap-6 py-4"
-          >
-            <button
-              type="submit"
-              className="bg-orange-900 text-white rounded-lg py-2 px-4 hover:border-[0.1px] border-gray-500 flex items-center gap-1"
+          <div className="flex md:flex-row items-center flex-col gap-6">
+            <form
+            action={handleSignInGoogle}
+              className="flex  py-4"
             >
-              Sign Up with GitHub <FaGithub />
-            </button>
-          </form>
+              <button
+                type="submit"
+                className="bg-orange-900 text-white rounded-lg py-2 px-4 hover:border-[0.1px] border-gray-500 flex items-center gap-1"
+              >
+                Sign Up with Google <FcGoogle />
+              </button>
+            </form>
+            <form action={handleSignIn}>
+            <button
+                type="submit"
+                className="bg-orange-900 text-white rounded-lg py-2 px-4 hover:border-[0.1px] border-gray-500 flex items-center gap-1"
+              >
+                Sign Up with GitHub <FaGithub />
+              </button>
+            </form>
+          </div>
         </div>
       </motion.div>
     </main>

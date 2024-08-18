@@ -1,42 +1,62 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { deleteTodo, getTodoById, toggleTodo, updateTodo } from "../../../../lib/actions/todoActions"
+import { NextRequest, NextResponse } from "next/server";
+import {
+  deleteTodo,
+  getTodoById,
+  getTodoId,
+  toggleTodo,
+  updateTodo,
+} from "../../../../lib/actions/todoActions";
 
-
-export async function DELETE(req: NextRequest, { params }: { params: { id: number } }) {
-    const todo = await getTodoById(params.id);
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: number } }
+) {
+  try {
+    const IdNumber = Number(params.id);
+    const todo = await getTodoId(IdNumber);
     if (!todo) {
-        return NextResponse.json({ message: "Todo not found" }, { status: 404 });
+      return NextResponse.json({ message: "Todo not found" }, { status: 404 });
     }
-    await deleteTodo(params.id);
-    return NextResponse.json({ message: 'Todo deleted successfully' });
+    await deleteTodo(IdNumber);
+    return NextResponse.json({ message: "Todo deleted successfully" });
+  } catch (error: any) {
+    return NextResponse.json({ message: error.message });
+  }
 }
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: number } }) {
-  const todo = await getTodoById(params.id);
-  
+export async function PATCH(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const IdNumber = Number(params.id);
+  const todo = await getTodoId(IdNumber);
+
   if (!todo) {
     return NextResponse.json({ message: "Todo not found" }, { status: 404 });
   }
 
   const { title, description } = await req.json();
-  
-  // Check if at least one field is provided
   if (!title && !description) {
-    return NextResponse.json({ message: "No values to update" }, { status: 400 });
+    return NextResponse.json(
+      { message: "No values to update" },
+      { status: 400 }
+    );
   }
 
-  await updateTodo(params.id, title, description);
-  
-  return NextResponse.json({ message: 'Todo updated successfully' });
+  await updateTodo(IdNumber, title, description);
+
+  return NextResponse.json({ message: "Todo updated successfully" });
 }
 
-
-
-export async function PUT(req: NextRequest, { params }: { params: { id: number } }) {
-    const todo = await getTodoById(params.id);
-    if (!todo) {
-        return NextResponse.json({ message: "Todo not found" }, { status: 404 });
-    }
-    await toggleTodo(params.id);
-    return NextResponse.json({ message: 'Todo toggled successfully' });
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const IdNumber = Number(params.id);
+  const todo = await getTodoId(IdNumber);
+  if (!todo) {
+    return NextResponse.json({ message: "Todo not found" }, { status: 404 });
+  }
+  await toggleTodo(IdNumber);
+  return NextResponse.json({ message: "Todo toggled successfully" });
 }

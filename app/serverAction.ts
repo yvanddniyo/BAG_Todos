@@ -9,3 +9,10 @@ export const   handleSignIn = async() => {
 export const handleSignOut = async() => {
     await signOut({redirectTo: "/" });
 };
+
+export const handleSignInGoogle = async() => {
+  await signIn("google", { redirectTo: "/todos/create" });
+}
+export const handleSignOutGoogle = async() => {
+  await signOut({redirectTo: "/" });
+}

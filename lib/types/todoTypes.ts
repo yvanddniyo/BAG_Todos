@@ -1,9 +1,10 @@
 export type todoType = {
     map(arg0: (item: any) => import("react").JSX.Element): unknown;
     text: any;
-    id: number;
+    id: string | number;
     title: string;
     description: string;
+    userId: string  
     done: boolean;
 }
 

@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import {
   boolean,
   timestamp,
@@ -9,6 +9,18 @@ import {
   serial,
 } from "drizzle-orm/pg-core"
 import type { AdapterAccountType } from "next-auth/adapters"
+import { todoType } from "../types/todoTypes";
+
+export const users = pgTable("user", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: text("name"),
+  email: text("email").unique(),
+  emailVerified: timestamp("emailVerified", { mode: "date" }),
+  image: text("image"),
+});
+
 
 export const todos = pgTable("todos", {
   id: serial("id").primaryKey(), 
@@ -18,19 +30,22 @@ export const todos = pgTable("todos", {
   createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
+  user_id: text("userId")
+    .notNull()
+    .references(() => users.id),  
 });
 
 
-   
-export const users = pgTable("user", {
-  id: text("id")
-    .primaryKey()
-    .$defaultFn(() => crypto.randomUUID()),
-  name: text("name"),
-  email: text("email").unique(),
-  emailVerified: timestamp("emailVerified", { mode: "date" }),
-  image: text("image"),
-})
+export const userRelations = relations(users, ({ many }) => ({
+  todos: many(todos),
+}));
+
+export const todoRelations = relations(todos, ({ one }) => ({
+  user: one(users, {
+    fields: [todos.user_id],
+    references: [users.id],
+  }),
+}));
 
 export const accounts = pgTable(
   "account",

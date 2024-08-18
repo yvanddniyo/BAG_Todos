@@ -19,7 +19,8 @@ export default function Todo() {
     queryKey: ['todos'],
     queryFn: fetchTodos,
   });
-
+  console.log('fdbnjvbjvbfjvnjfv', data);
+  
   const deleteMutation = useMutation({
     mutationFn: deleteTodos,
     onSuccess: () => {
@@ -34,7 +35,6 @@ export default function Todo() {
       onSettled: () => {
         setId(null);
       }});
-    
   };
 
   const updateMutation = useMutation({
@@ -75,13 +75,16 @@ export default function Todo() {
   }
 
   if (isLoading) return <div className="flex justify-center">Loading...</div>;
-  if (error) return <div className=" md:w-[70%] border-[0.5px] px-2 py-2 flex justify-center items-center">
-    <p className="">Unknown error occured</p>
-  </div>;
+  if (error) return <div className="md:w-[50%] mx-auto bg-slate-700 flex items-center justify-center py-2 rounded-md">
+  <h1>Oops You've no todos yet 😞</h1>
+  </div>
 
   return (
     <>
-      {data?.todos?.map((item: any) => (
+      { data?.todos.length === 0 ? <div className="md:w-[50%] mx-auto bg-slate-700 flex items-center justify-center py-2 rounded-md">
+        <h1>Oops You've no todos yet 😞</h1>
+        </div>
+      : data?.todos.map((item: any) => (
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}

@@ -2,11 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   getData,
   addTodo,
+  getTodoById,
 } from "../../../lib/actions/todoActions";
-import { NextApiRequest, NextApiResponse } from 'next';
+import { auth } from "@/auth";
 
 export async function GET(req: NextRequest) {
-  const todos = await getData();
+  const session:any = await auth()
+  const todos = await getData(session?.user.id);
   return NextResponse.json({
     status: 200,
     todos,
