@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { handleSignIn } from "@/app/serverAction"
+import { handleSignIn, handleSignOut } from "@/app/serverAction"
 
 interface Session {
   image: string;
@@ -44,7 +44,7 @@ export function DropdownMenuRadioGroupDemo({ session }: SessionDrop) {
           <DropdownMenuRadioItem value="top">{session.name}</DropdownMenuRadioItem>
           <label style={{paddingLeft: "10px", color: "#1f3434", fontWeight: "600"}}>Email</label>
           <DropdownMenuRadioItem value="bottom">{session.email}</DropdownMenuRadioItem>
-          <form action={handleSignIn} className="">
+          <form action={handleSignOut} className="">
             <label style={{paddingLeft: "10px", color: "#1f3434", fontWeight: "600"}}>Action</label>
             <DropdownMenuRadioItem value="right">
               <button type="submit">Logout</button>

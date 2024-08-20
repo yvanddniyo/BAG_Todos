@@ -9,18 +9,24 @@ import { deleteTodos, fetchTodos, toggleTodos, updateTodos } from "@/hooks/todoA
 import moment from 'moment'
 import { ToastContainer, toast } from "react-toastify"
 import { useState } from "react";
+import Loader from "@/utils/Loader";
+
 
 export default function Todo() {
   const [id, setId] = useState<number | null>(null)
   const [idUpdate, setIdUpdate] = useState<number | null>(null)
+  const [toggle, setToggle] = useState<number | null>(null)
   const queryClient = useQueryClient();
 
   const { data, error, isLoading } = useQuery({
     queryKey: ['todos'],
     queryFn: fetchTodos,
   });
-  console.log('fdbnjvbjvbfjvnjfv', data);
-  
+
+  const sortedData = data?.todos.sort((a: any, b: any) => {
+    return a.done === b.done ? 0 : a.done ? 1 : -1;
+  });
+
   const deleteMutation = useMutation({
     mutationFn: deleteTodos,
     onSuccess: () => {
@@ -71,20 +77,30 @@ export default function Todo() {
   })
 
   const handleToggle = (id: number, done: boolean) => {
-    toggleMutation.mutate({ id, toggle: { done: !done } });
+    setToggle(id)
+    toggleMutation.mutate({ id, toggle: { done: !done } },{
+      onSettled: () => {
+        setToggle(null)
+      }
+    })
+    
   }
 
-  if (isLoading) return <div className="flex justify-center">Loading...</div>;
+  if (isLoading) return <div className="flex justify-center">
+    <Loader />
+  </div>;
   if (error) return <div className="md:w-[50%] mx-auto bg-slate-700 flex items-center justify-center py-2 rounded-md">
   <h1>Oops You've no todos yet 😞</h1>
   </div>
 
-  return (
-    <>
-      { data?.todos.length === 0 ? <div className="md:w-[50%] mx-auto bg-slate-700 flex items-center justify-center py-2 rounded-md">
+return (
+  <>
+    {sortedData.length === 0 ? (
+      <div className="md:w-[50%] mx-auto bg-slate-700 flex flex-col items-center justify-center py-2 rounded-md">
         <h1>Oops You've no todos yet 😞</h1>
-        </div>
-      : data?.todos.map((item: any) => (
+      </div>
+    ) : (
+      sortedData.map((item: any) => (
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -92,42 +108,66 @@ export default function Todo() {
           key={item.id}
           className="w-full flex justify-center items-center mt-4"
         >
-          <div className={`md:w-[50%] border-[0.1px] shadow-lg flex items-center justify-between gap-6 md:px-8 px-1 pt-4 rounded-lg ${item.done ? 'bg-slate-800 ' : ''}`}>
+          <div
+            className={`md:w-[50%] border-[0.1px] shadow-lg flex items-center justify-between gap-6 md:px-8 px-1 py-4 rounded-lg ${
+              item.done ? 'bg-slate-800' : ''
+            }`}
+          >
             <div>
-              <Checkbox
-                checked={item.done}
-                onCheckedChange={() => handleToggle(item.id, item.done)}
-              />
+              {toggleMutation.isPending && toggle === item.id ? (
+                '...'
+              ) : (
+                <Checkbox
+                  checked={item.done}
+                  onCheckedChange={() => handleToggle(item.id, item.done)}
+                />
+              )}
             </div>
-            <div>
-              <h3 className={`text-center text-lg font-bold ${item.done ? 'line-through' : ''}`}>{item.title}</h3>
-              <p className={`md:text-[14px] text-[12px] text-center ${item.done ? 'line-through' : ''}`}>
+            <div className="flex-1">
+              <h3
+                className={`text-center text-lg font-bold ${
+                  item.done ? 'line-through' : ''
+                }`}
+                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+              >
+                {item.title}
+              </h3>
+              <p
+                className={`md:text-[14px] text-[12px] text-left ${
+                  item.done ? 'line-through' : ''
+                }`}
+                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+              >
                 {item.description}
               </p>
               <p className="text-xs text-gray-500 text-left pt-6 pb-1">
                 Created at: {moment(item.createdAt).format('MMMM D, YYYY h:mm A')}
               </p>
             </div>
-            <div className="flex md:flex-row flex-col items-center gap-3">
+            <div className="flex flex-col md:flex-row items-center gap-3">
               <div className="text-3xl cursor-pointer hover:text-blue-500 transition-all duration-300">
                 <UpdateAlert
-                  disables = {item.done}
+                  disables={item.done}
                   todo={item}
-                  onUpdate={(updatedData: any) => handleUpdate(item.id, updatedData)}
+                  onUpdate={(updatedData: any) =>
+                    handleUpdate(item.id, updatedData)
+                  }
                   isLoading={idUpdate === item.id}
                 />
               </div>
               <div className="text-3xl cursor-pointer hover:text-red-500 transition-all duration-300">
-                {<DeleteAlert
+                <DeleteAlert
                   onDelete={() => handleDelete(item.id)}
                   isLoading={id === item.id}
-                />}
+                />
               </div>
             </div>
           </div>
         </motion.div>
-      ))}
-      <ToastContainer />
-    </>
-  );
+      ))
+    )}
+    <ToastContainer />
+  </>
+);
+ 
 }

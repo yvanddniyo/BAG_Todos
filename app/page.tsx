@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { handleSignIn, handleSignInGoogle } from "./serverAction";
 
+
 const lete = Lateef({
   subsets: ["latin"],
   weight: "600",
@@ -57,7 +58,8 @@ export default function Home() {
           opacity: 0.75,
           pointerEvents: "none",
         }}
-      />
+        className="flex justify-center items-center"
+      >Hi</div>
       <motion.div
         initial={{ x: -200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}

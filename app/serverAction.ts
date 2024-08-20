@@ -7,7 +7,7 @@ export const   handleSignIn = async() => {
 }
 
 export const handleSignOut = async() => {
-    await signOut({redirectTo: "/" });
+    await signOut({redirectTo: "/todos/create" });
 };
 
 export const handleSignInGoogle = async() => {

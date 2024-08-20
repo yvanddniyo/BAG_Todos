@@ -8,6 +8,7 @@ import { createTodos } from "@/hooks/todoAPI";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { todoSchema } from "@/utils/todoSchema";
 import { fetchTodos } from "@/hooks/todoAPI";
+import { motion } from "framer-motion";
 
 export default function AddTodo() {
   const queryClient = useQueryClient();
@@ -50,7 +51,10 @@ export default function AddTodo() {
           Todo List
         </h1>
       </div>
-      <form
+      <motion.form
+       initial={{ x: 100, opacity: 0 }}
+       animate={{ x: 0, opacity: 1 }}
+       transition={{ duration: 0.5 }}
         className="flex flex-col justify-center items-center gap-4 mb-12"
         onSubmit={handleSubmit(onCreateTodo)}
       >
@@ -86,10 +90,12 @@ export default function AddTodo() {
           <p className="text-red-500">{errors.description.message}</p>
         )}
         </div>
-        <Button className="px-3" type="submit">
-          {isPending ? "Adding..." : "Add a Task"}
-        </Button>
-      </form>
+        <div className="md:w-[40%] flex items-center justify-center gap-4">
+          <Button className="px-3" type="submit">
+            {isPending ? "Adding..." : "Add a Task"}
+          </Button>
+        </div>
+      </motion.form>
       <div>
         {todos?.map((todo: any) => (
           <div key={todo.id}>

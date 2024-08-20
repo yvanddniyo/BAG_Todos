@@ -1,5 +1,6 @@
 import { TodoType } from "@/lib/types/todoTypes";
 import axios from "axios"
+
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 export const fetchTodos = async () => {
     const { data } = await axios.get(`${BASE_URL}/api/todos`);

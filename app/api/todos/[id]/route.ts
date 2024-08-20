@@ -6,12 +6,20 @@ import {
   toggleTodo,
   updateTodo,
 } from "../../../../lib/actions/todoActions";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export async function DELETE(
   req: NextRequest,
   { params }: { params: { id: number } }
 ) {
   try {
+    const session = await auth();
+    if (!session?.user.id) {
+      return NextResponse.json({
+        message: 'Unauthorized'
+      })
+    }
     const IdNumber = Number(params.id);
     const todo = await getTodoId(IdNumber);
     if (!todo) {
