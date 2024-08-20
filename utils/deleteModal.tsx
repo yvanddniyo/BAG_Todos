@@ -21,7 +21,7 @@ export function DeleteAlert({ onDelete, isLoading }: DeleteAlertProps) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction className="bg-red-500 text-red-500" onClick={onDelete}>
+          <AlertDialogAction className="bg-red-500" onClick={onDelete}>
             Yes, I'm sure
           </AlertDialogAction>
         </AlertDialogFooter>

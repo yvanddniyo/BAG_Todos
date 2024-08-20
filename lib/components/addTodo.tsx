@@ -9,6 +9,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { todoSchema } from "@/utils/todoSchema";
 import { fetchTodos } from "@/hooks/todoAPI";
 import { motion } from "framer-motion";
+import { TypeAnimation } from 'react-type-animation';
 
 export default function AddTodo() {
   const queryClient = useQueryClient();
@@ -48,7 +49,22 @@ export default function AddTodo() {
     <>
       <div className="w-full flex justify-center items-center flex-col">
         <h1 className="pt-16 text-center pb-6 text-gray-500 font-[800] text-2xl">
-          Todo List
+        <TypeAnimation
+      sequence={[
+        'Todo-app first make it Work',
+        2000, 
+        'Todo-app first make it Good',
+        2000,
+        'Todo-app first make it Fast',
+        2000,
+        'Todo-app first make it Secure',
+        2000
+      ]}
+      wrapper="span"
+      speed={50}
+      style={{ fontSize: '1em', display: 'inline-block', color: "#db6d18" }}
+      repeat={Infinity}
+    />
         </h1>
       </div>
       <motion.form

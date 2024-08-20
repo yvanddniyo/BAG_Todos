@@ -23,7 +23,7 @@ export const Dark = ({ session }: DarkProps) => {
     initial={{ y: -50, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
     transition={{ duration: 0.5 }}
-    className="w-full fixed top-6 left-0 flex items-center justify-between px-4 py-2 mx-auto">
+    className="w-full fixed top-6 left-0 flex items-center justify-between md:px-12 px-4 py-2 mx-auto">
       <Link href={"/"}>
         <h3 className="md:text-3xl text-2xl">
           Todo-
