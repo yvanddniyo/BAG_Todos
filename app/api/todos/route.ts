@@ -3,7 +3,6 @@ import {
   getData,
   addTodo,
   getTodoById,
-  clearTodos,
 } from "../../../lib/actions/todoActions";
 import { auth } from "@/auth";
 
@@ -25,11 +24,5 @@ export async function POST(req: NextRequest) {
   });
 }
 
-export async function DELETE(){
-  await clearTodos()
-  return NextResponse.json({
-    status: 200,
-    message: "Todo deleted successfully",
-    });
-}
+
 

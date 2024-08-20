@@ -12,12 +12,7 @@ export async function getTodoById(id: string) {
 export async function getTodoId(id: number) {
   return await db.query.todos.findFirst({ where: eq(todos.id, id) });
 }
-export async function clearTodos(){
-    const session = await auth()
-    const userId = session?.user.id.toString()
-    await db.delete(todos)
-    .where(eq(todos.user_id, userId))
-}
+
 export const getData = async (id: string) => {
   const data = await db.select().from(todos).where(eq(todos.user_id, id));
   return data;
