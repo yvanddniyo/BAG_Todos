@@ -90,13 +90,13 @@ export default function Todo() {
     <Loader />
   </div>;
   if (error) return <div className="md:w-[50%] mx-auto bg-slate-700 flex items-center justify-center py-2 rounded-md">
-  <h1>Oops You've no todos yet 😞</h1>
+  <h1>Unknown error occured, Please try again</h1>
   </div>
 
 return (
   <>
     {sortedData.length === 0 ? (
-      <div className="md:w-[50%] mx-auto bg-slate-700 flex flex-col items-center justify-center py-2 rounded-md">
+      <div className="md:w-[50%] mx-auto flex flex-col items-center justify-center py-2 rounded-md">
         <h1>Oops You've no todos yet 😞</h1>
       </div>
     ) : (
@@ -109,7 +109,7 @@ return (
           className="w-full flex justify-center items-center mt-4"
         >
           <div
-            className={`md:w-[50%] border-[0.1px] shadow-lg flex items-center justify-between gap-6 md:px-8 px-1 py-4 rounded-lg ${
+            className={`md:w-[40%] border-[0.1px] shadow-lg flex items-center justify-between gap-6 md:px-8 px-1 py-4 rounded-lg ${
               item.done ? 'bg-slate-800' : ''
             }`}
           >

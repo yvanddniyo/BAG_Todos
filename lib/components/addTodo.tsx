@@ -87,7 +87,7 @@ export default function AddTodo() {
               />
             )}
           />
-          {errors.title && <p className="text-red-500">{errors.title.message}</p>}
+          {errors.title && <p className="text-red-500 text-left">{errors.title.message}</p>}
         </div>
 
         <div className="w-full flex justify-center flex-col items-center">

@@ -59,7 +59,7 @@ export function UpdateAlert({ todo, onUpdate, isLoading }: UpdateAlertProps) {
         <AlertDialogFooter>
           <AlertDialogCancel onClick={() => setIsOpen(false)}>Cancel</AlertDialogCancel>
           <AlertDialogAction 
-            className="bg-blue-500 text-white"
+            className=""
             onClick={handleUpdate}
             disabled={isLoading}
           >

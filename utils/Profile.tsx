@@ -35,7 +35,7 @@ export function DropdownMenuRadioGroupDemo({ session }: SessionDrop) {
           alt=""
         />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="" style={{marginRight:"10px"}}>
         <DropdownMenuLabel>Your Profile</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
