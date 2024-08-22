@@ -9,11 +9,11 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from '@/components/ui/textarea';
+} from "../components/ui/alert-dialog"
+import { Button } from "../components/ui/button"
+import { Input } from "../components/ui/input"
+import { Label } from "../components/ui/label"
+import { Textarea } from '../components/ui/textarea';
 
 interface UpdateAlertProps {
   todo: { id: number; title: string; description: string };
@@ -23,8 +23,8 @@ interface UpdateAlertProps {
 }
 
 export function UpdateAlert({ todo, onUpdate, isLoading }: UpdateAlertProps) {
-  const [title, setTitle] = useState(todo.title);
-  const [description, setDescription] = useState(todo.description);
+  const [title, setTitle] = useState(todo?.title);
+  const [description, setDescription] = useState(todo?.description);
   const [isOpen, setIsOpen] = useState(false);
 
  const handleUpdate = () => {

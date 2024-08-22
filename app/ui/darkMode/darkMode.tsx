@@ -2,7 +2,8 @@
 
 import ThemeSwitch from "@/app/components/ThemeToggle";
 import { handleSignOut } from "@/app/serverAction";
-import { DropdownMenuRadioGroupDemo } from "@/utils/Profile";
+// import { handleSignOut } from "@/app/serverAction";
+import { DropdownMenuRadioGroupDemo } from "../../../utils/Profile";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { SlLogout } from "react-icons/sl";

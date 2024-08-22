@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "../components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,8 +10,10 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { handleSignIn, handleSignOut } from "@/app/serverAction"
+} from "../components/ui/dropdown-menu"
+
+import { handleSignIn, handleSignOut } from "../app/serverAction"
+import Image from "next/image"
 
 interface Session {
   image: string;
@@ -31,8 +33,8 @@ export function DropdownMenuRadioGroupDemo({ session }: SessionDrop) {
       <DropdownMenuTrigger asChild>
         <img
           style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }}
-          src={session.image}
-          alt=""
+          src={session?.image}
+          alt="Profile Pic"
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="" style={{marginRight:"10px"}}>
@@ -41,9 +43,9 @@ export function DropdownMenuRadioGroupDemo({ session }: SessionDrop) {
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
         <label style={{paddingLeft: "10px", color: "#1f3434", fontWeight: "600"}}>Name</label>
 
-          <DropdownMenuRadioItem value="top">{session.name}</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="top">{session?.name}</DropdownMenuRadioItem>
           <label style={{paddingLeft: "10px", color: "#1f3434", fontWeight: "600"}}>Email</label>
-          <DropdownMenuRadioItem value="bottom">{session.email}</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="bottom">{session?.email}</DropdownMenuRadioItem>
           <form action={handleSignOut} className="">
             <label style={{paddingLeft: "10px", color: "#1f3434", fontWeight: "600"}}>Action</label>
             <DropdownMenuRadioItem value="right">

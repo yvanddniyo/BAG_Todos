@@ -1,15 +1,15 @@
 "use client";
 
-import { Checkbox } from "@/components/ui/checkbox";
-import { DeleteAlert } from "@/utils/deleteModal";
-import { UpdateAlert } from "@/utils/updateModal";
+import { Checkbox } from "../../components/ui/checkbox";
+import { DeleteAlert } from "../../utils/deleteModal";
+import { UpdateAlert } from "../../utils/updateModal";
 import { motion } from "framer-motion";
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { deleteTodos, fetchTodos, toggleTodos, updateTodos } from "@/hooks/todoAPI";
+import { deleteTodos, fetchTodos, toggleTodos, updateTodos } from "../../hooks/todoAPI";
 import moment from 'moment'
 import { ToastContainer, toast } from "react-toastify"
 import { useState } from "react";
-import Loader from "@/utils/Loader";
+import Loader from "../../utils/Loader";
 
 
 export default function Todo() {

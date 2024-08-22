@@ -3,7 +3,6 @@
 import { Lateef } from "next/font/google";
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
-// import {FaGoogle} from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { handleSignIn, handleSignInGoogle } from "./serverAction";
