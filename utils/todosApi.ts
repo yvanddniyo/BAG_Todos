@@ -1,4 +1,5 @@
-import { TodoType } from "@/types/todoTypes";
+
+import { createTypes } from "@/types/todoTypes";
 import axios from "axios"
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
@@ -7,7 +8,7 @@ export const fetchTodos = async () => {
     return data;
   };
 
-export const  createTodos = async(dataForm: TodoType) => {
+export const  createTodos = async(dataForm: createTypes) => {
     const { data } = await axios.post(`${BASE_URL}/api/todos`, dataForm)
     return data;
 }
