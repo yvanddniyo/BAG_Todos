@@ -1,6 +1,6 @@
 import {expect, test} from "vitest"
 import { render, screen} from "@testing-library/react"
-import { DeleteAlert } from "../utils/deleteModal"
+import { DeleteAlert } from "../components/shadcn/deleteModal"
 
 test("Delete a modal", () =>{
     render(

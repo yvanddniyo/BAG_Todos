@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Radio_Canada } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./provider";
-import QueryProvider from "./components/QueryProvider";
+import QueryProvider from "./QueryProvider";
 
 const radio = Radio_Canada({ subsets: ["latin"] });
 

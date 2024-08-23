@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Button } from "../components/ui/button"
+import { Button } from "../ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,9 +10,9 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../components/ui/dropdown-menu"
+} from "../ui/dropdown-menu"
 
-import { handleSignIn, handleSignOut } from "../app/serverAction"
+import { handleSignIn, handleSignOut } from "../../utils/serverAction"
 import Image from "next/image"
 
 interface Session {

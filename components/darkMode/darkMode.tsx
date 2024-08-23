@@ -1,12 +1,12 @@
 'use client';
 
-import ThemeSwitch from "@/app/components/ThemeToggle";
-import { handleSignOut } from "@/app/serverAction";
-// import { handleSignOut } from "@/app/serverAction";
-import { DropdownMenuRadioGroupDemo } from "../../../utils/Profile";
+
+import { DropdownMenuRadioGroupDemo } from "../shadcn/Profile";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { SlLogout } from "react-icons/sl";
+import ThemeSwitch from "./ThemeToggle";
+import { handleSignOut } from "@/utils/serverAction";
 
 interface Session {
   image: string;

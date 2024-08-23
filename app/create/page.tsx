@@ -1,15 +1,16 @@
 "use server";
-import { Dark } from "@/app/ui/darkMode/darkMode";
-import AddTodo from "@/lib/components/addTodo";
-import Todo from "@/lib/components/todo";
+
+import AddTodo from "@/components/Todos/addTodo";
+import Todo from "@/components/Todos/todo";
 import "react-toastify/dist/ReactToastify.css";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import { Dark } from "@/components/darkMode/darkMode";
 
 export default async function page() {
   const session: any = await auth();
   if (!session?.user) {
-    redirect("/api/auth/signin");
+    redirect("/");
   }
   return (
     <main className="w-full md:px-12 py-12 px-3">

@@ -9,7 +9,7 @@ import {
   serial,
 } from "drizzle-orm/pg-core"
 import type { AdapterAccountType } from "next-auth/adapters"
-import { todoType } from "../types/todoTypes";
+import { todoType } from "../../types/todoTypes";
 
 export const users = pgTable("user", {
   id: text("id")

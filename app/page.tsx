@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { handleSignIn, handleSignInGoogle } from "./serverAction";
+import { handleSignIn, handleSignInGoogle } from "../utils/serverAction";
 
 
 const lete = Lateef({
@@ -85,7 +85,7 @@ export default function Home() {
             <p className="py-3">
               Create your account and start your journey with best to do app
               which will help you to schedule and keep track every action you
-              perform don't right time the right time is now.
+              perform don't wait right time, the right time is now.
             </p>
           </div>
           <div className="flex md:flex-row items-center flex-col gap-6">

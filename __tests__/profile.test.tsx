@@ -1,6 +1,6 @@
 import { test, expect} from  "vitest"
 import { screen, render } from "@testing-library/react"
-import { DropdownMenuRadioGroupDemo } from "../utils/Profile"
+import { DropdownMenuRadioGroupDemo } from "../components/shadcn/Profile"
 
 
 test('Testing the profile components', ({session}:any) => {

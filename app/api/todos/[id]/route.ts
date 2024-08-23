@@ -44,9 +44,9 @@ export async function PATCH(
   }
 
   const { title, description } = await req.json();
-  if (!title && !description) {
+  if (!title || !description) {
     return NextResponse.json(
-      { message: "No values to update" },
+      { message: `No values provided title or description.` },
       { status: 400 }
     );
   }

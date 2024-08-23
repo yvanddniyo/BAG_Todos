@@ -1,4 +1,4 @@
-import { TodoType } from "@/lib/types/todoTypes";
+import { TodoType } from "@/types/todoTypes";
 import axios from "axios"
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL

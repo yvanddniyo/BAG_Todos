@@ -4,25 +4,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { createTodos } from "@/hooks/todoAPI";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { todoSchema } from "@/utils/todoSchema";
-import { fetchTodos } from "@/hooks/todoAPI";
 import { motion } from "framer-motion";
 import { TypeAnimation } from 'react-type-animation';
+import { todoSchema } from "../shadcn/todoSchema";
+import { createTodos, fetchTodos } from "../../utils/todosApi";
+import { useCreateTodos } from "@/hooks/useTodosHooks";
 
 export default function AddTodo() {
   const queryClient = useQueryClient();
   //@ts-ignore
   const { data: todos } = fetchTodos();
-
-  const { mutate, isPending } = useMutation({
-    mutationFn: createTodos,
-    onSuccess: () => {
-      //@ts-ignore
-      queryClient.invalidateQueries("todos");
-    },
-  });
+  const createMutation = useCreateTodos()
 
   const {
     control,
@@ -38,7 +31,7 @@ export default function AddTodo() {
   });
 
   const onCreateTodo = (data: any) => {
-    mutate(data, {
+    createMutation.mutate(data, {
       onSuccess: () => {
         reset();
       },
@@ -82,7 +75,7 @@ export default function AddTodo() {
               <Input
                 type="text"
                 placeholder="Title"
-                className="md:w-[40%] mx-4 outline-none shadow-md px-2 border rounded"
+                className="md:w-[50%] mx-4 outline-none shadow-md px-2 border rounded"
                 {...field}
               />
             )}
@@ -97,7 +90,7 @@ export default function AddTodo() {
             render={({ field }) => (
               <Textarea
                 placeholder="Description"
-                className="md:w-[40%] mx-4 outline-none shadow-md px-2 border rounded"
+                className="md:w-[50%] mx-4 outline-none shadow-md px-2 border rounded"
                 {...field}
               />
             )}
@@ -108,7 +101,7 @@ export default function AddTodo() {
         </div>
         <div className="md:w-[40%] flex items-center justify-center gap-4">
           <Button className="px-3" type="submit">
-            {isPending ? "Adding..." : "Add a Task"}
+            {createMutation.isPending ? "Adding..." : "Add a Task"}
           </Button>
         </div>
       </motion.form>
