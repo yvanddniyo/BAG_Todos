@@ -17,7 +17,7 @@ import { Label } from "../ui/label";
 import { Textarea } from '../ui/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, Controller, useWatch } from 'react-hook-form';
-import { todoSchema } from './todoSchema';
+import { todoSchema, updateSchema } from '../../utils/todoSchema';
 import { useFetchTodos } from '@/hooks/useTodosHooks';
 
 interface UpdateAlertProps {
@@ -36,7 +36,7 @@ export function UpdateAlert({ todo, onUpdate, isLoading }: UpdateAlertProps) {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(todoSchema),
+    resolver: zodResolver(updateSchema),
     defaultValues: {
       title: todo.title || "",
       description: todo.description || "",

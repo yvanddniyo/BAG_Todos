@@ -8,7 +8,7 @@ export type todoType = {
     done: boolean;
 }
 
-export type TodoType = {
+export type createTypes = {
     title: string,
     description: string,
 }

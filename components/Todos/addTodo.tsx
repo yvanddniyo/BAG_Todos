@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { TypeAnimation } from 'react-type-animation';
-import { todoSchema } from "../shadcn/todoSchema";
+import { todoSchema } from "../../utils/todoSchema";
 import { createTodos, fetchTodos } from "../../utils/todosApi";
 import { useCreateTodos } from "@/hooks/useTodosHooks";
 
