@@ -31,15 +31,6 @@ export default function Home() {
     };
   }, []);
 
-  // const handleSignInClick = async (e: React.MouseEvent) => {
-  //   e.preventDefault();
-  //   try {
-  //     await handleSignIn();
-  //     // The server action will handle the redirection
-  //   } catch (error) {
-  //     console.error("Sign in failed:", error);
-  //   }
-  // };
   return (
     <main
       className="bg-[#121212] min-h-[100vh] text-white relative overflow-hidden"
