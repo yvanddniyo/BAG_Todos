@@ -8,7 +8,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { TypeAnimation } from 'react-type-animation';
 import { todoSchema } from "../../utils/todoSchema";
-import { createTodos, fetchTodos } from "../../utils/todosApi";
+import { createTodos, fetchTodos } from "../../utils/fetchApi";
 import { useCreateTodos } from "@/hooks/useTodosHooks";
 
 export default function AddTodo() {

@@ -10,7 +10,7 @@ import {
   fetchTodos,
   toggleTodos,
   updateTodos,
-} from "../../utils/todosApi";
+} from "../../utils/fetchApi";
 import moment from "moment";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
