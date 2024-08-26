@@ -4,7 +4,7 @@ import {
   fetchTodos,
   toggleTodos,
   updateTodos,
-} from "@/utils/todosApi";
+} from "@/utils/fetchApi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
