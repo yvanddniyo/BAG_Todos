@@ -16,7 +16,3 @@ jobs:
 
       - name: Run test
         run: pnpm test
-
-env:
-  DEFAULT_BRANCH: main
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
