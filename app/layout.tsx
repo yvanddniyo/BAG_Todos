@@ -12,66 +12,28 @@ type GenerateMetadataProps = {
   params: { id: string }
 }
 
-// export async function generateMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
-//   // const id = params.id;
-//   const fetchTodo = await axios.get(`${BASE_URL}/api/todos`);
-//   const resMetadata = fetchTodo.data;
-  
-//   console.log("resMetadata", resMetadata);
-  
-//   return {
-//     title: resMetadata.title || 'Todo App',
-//     description: resMetadata.description || 'Manage your tasks efficiently',
-//     openGraph: {
-//       images: [
-//         {
-//           url: resMetadata.image || "../../public/todo-app.png", 
-//           width: 1200,
-//           height: 630,
-//           alt: 'Todo App',
-//         },
-//       ],
-//     },
-//   };
-// }
 export async function generateMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
-  try {
-    const fetchTodo = await axios.get(`${BASE_URL}/api/todos`);
-    const resMetadata = fetchTodo.data;
-
-    return {
-      title: resMetadata.title || 'Todo App',
-      description: resMetadata.description || 'Manage your tasks efficiently',
-      openGraph: {
-        images: [
-          {
-            url: resMetadata.image ||  "../../public/todo-app.png", 
-            width: 1200,
-            height: 630,
-            alt: 'Todo App',
-          },
-        ],
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching metadata:", error);
-    return {
-      title: 'Todo App',
-      description: 'Manage your tasks efficiently',
-      openGraph: {
-        images: [
-          {
-            url:  "../../public/todo-app.png",
-            width: 1200,
-            height: 630,
-            alt: 'Todo App',
-          },
-        ],
-      },
-    };
-  }
+  // const id = params.id;
+  const fetchTodo = await axios.get(`${BASE_URL}/api/todos`);
+  const resMetadata = fetchTodo.data;
+  
+  console.log("resMetadata", resMetadata);
+  
+  return {
+    title: resMetadata.title || 'Todo-App',
+    description: resMetadata.description || 'Manage your tasks efficiently',
+    openGraph: {
+      images: [
+        {
+          url: resMetadata.image || "https://i.pinimg.com/originals/31/14/5e/31145e7925e59e8fb344f13422435dba.jpg", 
+          width: 1200,
+          height: 630,
+          alt: 'Todo App',
+        },
+      ],
+    },
+  };
 }
-
 
 export default function RootLayout({
   children,
