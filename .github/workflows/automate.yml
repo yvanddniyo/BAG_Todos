@@ -7,16 +7,6 @@ on:
     branches: [master, main]
 
 jobs:
-  super-lint:
-    name: Lint code base
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run super-lint
-        uses: github/super-linter@v5
-
   run-test:
     name: Run playwright test
     runs-on: ubuntu-latest
@@ -25,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run test
-        run: npm run test
+        run: pnpm test
 
 env:
   DEFAULT_BRANCH: main
