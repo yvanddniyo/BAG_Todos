@@ -14,16 +14,22 @@ type GenerateMetadataProps = {
 
 export async function generateMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
   const id = params.id;
-  const fetchTodo = await axios.get(`${BASE_URL}/api/todos`);
+  const fetchTodo = await axios.get(`http://localhost:3000/api/todos`);
   const resMetadata = fetchTodo.data;
   console.log("resMetadata", resMetadata);
   
   return {
-    title: resMetadata.title,
-    description: resMetadata.description
+    title: resMetadata.title || 'Todo App',
+    description: resMetadata.description || 'Manage your tasks efficiently',
   };
 }
 
+// ... rest of the file remains unchanged ...
+
+// export const metadata: Metadata = {
+//   title: "Todo-app",
+//   description: "This app is about help you to schedule things you'll work on later. Plan the task well because without plan there nothing to will happen.",
+// };
 export default function RootLayout({
   children,
 }: Readonly<{
