@@ -1,37 +1,36 @@
 name  = Run playwright test
 
-on 
-  push :
+on: push 
    branches :[master,main]
   pull_request :
    branches :[master,main]
    
-   jobs :
-     super-lint : 
-        name: Lint run code base
-        runs-on : ubuntu-latest
-        steps: 
-          - name: Checkout code
-            uses: actions/checksout@v2
-
-          - name: Run super-lint
-            uses: github/super-lint@v1
-
-     run-test : 
-      name: Run playwright test
-      runs-on: ubuntu-latest
+jobs :
+    super-lint : 
+      name: Lint run code base
+      runs-on : ubuntu-latest
       steps: 
         - name: Checkout code
-          uses: actions/checkout@v2
+          uses: actions/checksout@v2
 
-        - name: Run  test
-          run: npm run test
+        - name: Run super-lint
+          uses: github/super-lint@v1
 
-     run-test : 
-      name: Run playwright test
-      runs-on: ubuntu-latest
-      steps: 
-      
-      env:
-      DEFAULT_BRANCH: main
-      
+    run-test : 
+    name: Run playwright test
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run  test
+        run: npm run test
+
+    run-test : 
+    name: Run playwright test
+    runs-on: ubuntu-latest
+    steps: 
+    
+    env:
+    DEFAULT_BRANCH: main
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
