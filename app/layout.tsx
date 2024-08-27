@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
   console.log("resMetadata", resMetadata);
   
   return {
-    title: resMetadata.title || 'Todo-App',
+    title: resMetadata.title || 'Todo-App-',
     description: resMetadata.description || 'Manage your tasks efficiently',
     openGraph: {
       images: [
