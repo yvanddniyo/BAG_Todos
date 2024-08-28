@@ -12,6 +12,7 @@ import { createTodos, fetchTodos } from "../../utils/fetchApi";
 import { useCreateTodos } from "@/hooks/useTodosHooks";
 
 export default function AddTodo() {
+  
   const queryClient = useQueryClient();
   //@ts-ignore
   const { data: todos } = fetchTodos();
@@ -100,7 +101,9 @@ export default function AddTodo() {
         )}
         </div>
         <div className="md:w-[40%] flex items-center justify-center gap-4">
-          <Button className="px-3" type="submit">
+          <Button className="px-3" type="submit"
+          disabled={createMutation.isPending}
+          >
             {createMutation.isPending ? "Adding..." : "Add a Task"}
           </Button>
         </div>

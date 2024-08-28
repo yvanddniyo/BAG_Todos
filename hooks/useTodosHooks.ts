@@ -75,11 +75,16 @@ export const useToggleTodos = () => {
   return useMutation({
     mutationFn: ({ id, toggle }: { id: number; toggle: { done: boolean } }) =>
       toggleTodos(id, toggle),
-    onSuccess: () => {
+    onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
         queryKey: ["todos"],
       });
-      toast.success("Todo is completed 😅");
+      if(variables.toggle.done){
+        toast.success("Todo is completed 😅");
+      }
+      else{
+        toast.success("Todo is not completed 😥");
+      }
     },
   });
 };
