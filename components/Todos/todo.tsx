@@ -4,16 +4,10 @@ import { Checkbox } from "../ui/checkbox";
 import { DeleteAlert } from "../shadcn/deleteModal";
 import { UpdateAlert } from "../shadcn/updateModal";
 import { motion } from "framer-motion";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import {
-  deleteTodos,
-  fetchTodos,
-  toggleTodos,
-  updateTodos,
-} from "../../utils/fetchApi";
+import { useQueryClient } from "@tanstack/react-query";
 import moment from "moment";
-import { ToastContainer, toast } from "react-toastify";
-import { useState } from "react";
+import { ToastContainer} from "react-toastify";
+import { useEffect, useRef, useState } from "react";
 import Loader from "../shadcn/Loader";
 import {
   useDeleteTodos,
@@ -27,15 +21,24 @@ export default function Todo() {
   const [idUpdate, setIdUpdate] = useState<number | null>(null);
   const [toggle, setToggle] = useState<number | null>(null);
   const queryClient = useQueryClient();
+  const [startingIndex, setStartingIndex] = useState(0);
+  const [endingIndex, setEndingIndex] = useState(2);
+  const lastTodoRef = useRef<HTMLDivElement>(null);
 
   const { data, error, isLoading } = useFetchTodos();
   const deleteMutation = useDeleteTodos();
   const updatedMutation = useUpdateTodos();
   const toggleMutation = useToggleTodos();
+  const partialData = data?.todos.slice(startingIndex, endingIndex);
+  const noMoreTodos = endingIndex >= (data?.todos.length || 0);
 
-  const sortedData = data?.todos.sort((a: any, b: any) => {
+  const sortedData = partialData?.sort((a: any, b: any) => {
     return a.done === b.done ? 0 : a.done ? 1 : -1;
   });
+  // this function is used to load more todos
+  const fetMoreTodos = () => {
+    setEndingIndex(endingIndex + 2);
+  };
 
   const handleDelete = (id: number) => {
     setId(id);
@@ -45,6 +48,12 @@ export default function Todo() {
       },
     });
   };
+  // this function is used to scroll to the last todo
+ useEffect(() => {
+  if (lastTodoRef.current) {
+    lastTodoRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+}, [endingIndex]);
 
   const handleUpdate = (
     id: number,
@@ -93,12 +102,13 @@ export default function Todo() {
           <h1>Oops You've no todos yet 😞</h1>
         </div>
       ) : (
-        sortedData.map((item: any) => (
+        sortedData.map((item: any, index: number) => (
           <motion.div
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
             key={item.id}
+            ref={index === sortedData.length - 1 ? lastTodoRef : null}
             className="w-full flex justify-center items-center mt-4"
           >
             <div
@@ -165,6 +175,19 @@ export default function Todo() {
           </motion.div>
         ))
       )}
+       <div className="flex justify-center items-center pt-4">
+        <button
+          className={`px-4 py-1 rounded-full transition-colors text-sm ${
+            noMoreTodos
+              ? 'bg-red-400 text-gray-700 cursor-not-allowed'
+              : 'bg-orange-500 text-white hover:bg-orange-600'
+          }`}
+          onClick={fetMoreTodos}
+          disabled={noMoreTodos}
+        >
+          {noMoreTodos ? "No More Todos to load" : "Load More Todos"}
+        </button>
+      </div>
       <ToastContainer />
     </>
   );
