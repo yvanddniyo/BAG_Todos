@@ -53,7 +53,7 @@ jobs:
           echo "NEXT_PUBLIC_BASE_URL is set to: $NEXT_PUBLIC_BASE_URL"
         fi
     - run: pnpm install
-    - run: pnpm run build --if-present
+    - run: pnpm run build
     - run: pnpm test
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
