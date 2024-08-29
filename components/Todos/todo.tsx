@@ -31,6 +31,7 @@ export default function Todo() {
   const toggleMutation = useToggleTodos();
   const partialData = data?.todos.slice(startingIndex, endingIndex);
   const noMoreTodos = endingIndex >= (data?.todos.length || 0);
+  const isTodosTwo = data?.todos.length <= 2;
 
   const sortedData = partialData?.sort((a: any, b: any) => {
     return a.done === b.done ? 0 : a.done ? 1 : -1;
@@ -176,7 +177,7 @@ export default function Todo() {
         ))
       )}
        <div className="flex justify-center items-center pt-4">
-        <button
+      { isTodosTwo ?  "" : <button
           className={`px-4 py-1 rounded-full transition-colors text-sm ${
             noMoreTodos
               ? 'bg-red-400 text-gray-700 cursor-not-allowed'
@@ -185,8 +186,8 @@ export default function Todo() {
           onClick={fetMoreTodos}
           disabled={noMoreTodos}
         >
-          {noMoreTodos ? "No More Todos to load" : "Load More Todos"}
-        </button>
+          {noMoreTodos ? "No More Todos to load"  : "Load More Todos"}
+        </button>}
       </div>
       <ToastContainer />
     </>
