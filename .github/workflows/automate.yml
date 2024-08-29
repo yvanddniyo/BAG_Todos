@@ -30,8 +30,13 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Install Dependencies
-        run: pnpm ci
+        run: pnpm install
 
       - name: Run Tests
         run: pnpm test
