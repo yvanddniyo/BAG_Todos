@@ -52,7 +52,8 @@ export const useUpdateTodos = () => {
     }) => {
       try {
         return await updateTodos(id, data);
-      } catch (error) {
+      } catch (error:any) {
+        toast.error(`Error: ${error.message}`);
         throw new Error('Failed to update todo');
       }
     },
