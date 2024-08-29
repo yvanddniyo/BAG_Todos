@@ -31,22 +31,11 @@ jobs:
           node-version: "20"
 
       - name: Install Dependencies
-        run: npm ci
+        run:pnpm ci
 
       - name: Run Tests
-        run: npm test
+        run:pnpm test
 
-      - name: Install coveralls package
-        run: npm install coveralls
-
-      - name: Report coverage to Coveralls
-        run: npm run coveralls
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: yvanddniyo/BE-portofolio-bloger
 
 
 
