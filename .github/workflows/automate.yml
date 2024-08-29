@@ -44,10 +44,18 @@ jobs:
         key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
+    - name: Check NEXT_PUBLIC_BASE_URL
+      run: |
+        if [ -z "$NEXT_PUBLIC_BASE_URL" ]; then
+          echo "NEXT_PUBLIC_BASE_URL is not set"
+          exit 1
+        else
+          echo "NEXT_PUBLIC_BASE_URL is set to: $NEXT_PUBLIC_BASE_URL"
+        fi
     - run: pnpm install
-    - run: pnpm run build
+    - run: pnpm run build --if-present
     - run: pnpm test
-    env:
+      env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         AUTH_GOOGLE_ID: ${{ secrets.AUTH_GOOGLE_ID }}
         AUTH_GOOGLE_SECRET: ${{ secrets.AUTH_GOOGLE_SECRET }}
