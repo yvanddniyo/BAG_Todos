@@ -2,7 +2,7 @@
 import { createTypes } from "@/types/todoTypes";
 import axios from "axios"
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
 export const fetchTodos = async () => {
     const { data } = await axios.get(`${BASE_URL}/api/todos`);
     return data;
