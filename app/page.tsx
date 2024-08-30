@@ -6,6 +6,8 @@ import { FaGithub } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { handleSignIn, handleSignInGoogle } from "../utils/serverAction";
+import LetterPullup from "@/components/magicui/letter-pullup";
+import Globe from "@/components/magicui/globe";
 
 
 const lete = Lateef({
@@ -36,6 +38,7 @@ export default function Home() {
       className="bg-[#121212] min-h-[100vh] text-white relative overflow-hidden"
     >
       <div
+      
         style={{
           position: "absolute",
           backgroundColor: "#f26d0f",
@@ -48,8 +51,8 @@ export default function Home() {
           opacity: 0.75,
           pointerEvents: "none",
         }}
-        className="flex justify-center items-center"
-      >Hi</div>
+        className=" hidden md:flex justify-center items-center"
+      />
       <motion.div
         initial={{ x: -200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -71,7 +74,9 @@ export default function Home() {
         <div className="md:w-[60%] lg:w-[45%] flex justify-center md:mx-auto flex-col items-center border-[0.2px] mt-20 py-4 px-5 border-gray-500 rounded-lg mx-4">
           <div className="text-center">
             <h3 className="py-2 font-bold text-green-400">
-              Keep Your Progress Grow
+             <LetterPullup words={"Keep Your Progress Grow"} delay={0.09}
+             className="text-sm text-green-400"
+              />
             </h3>
             <p className="py-3">
               Create your account and start your journey with best to do app
