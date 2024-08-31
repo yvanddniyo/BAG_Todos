@@ -16,9 +16,7 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
   // const id = params.id;
   const fetchTodo = await axios.get(`${BASE_URL}/api/todos`);
   const resMetadata = fetchTodo.data;
-  
-  console.log("resMetadata", resMetadata);
-  
+   
   return {
     title: resMetadata.title || 'Todo-App-',
     description: resMetadata.description || 'Manage your tasks efficiently',
