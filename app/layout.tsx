@@ -13,7 +13,6 @@ type GenerateMetadataProps = {
 }
 
 export async function generateMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
-  // const id = params.id;
   const fetchTodo = await axios.get(`${BASE_URL}/api/todos`);
   const resMetadata = fetchTodo.data;
    

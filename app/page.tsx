@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { handleSignIn, handleSignInGoogle } from "../utils/serverAction";
 import LetterPullup from "@/components/magicui/letter-pullup";
-import Globe from "@/components/magicui/globe";
 
 
 const lete = Lateef({
