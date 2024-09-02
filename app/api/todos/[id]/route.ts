@@ -7,7 +7,7 @@ import {
   updateTodo,
 } from "../../../../lib/actions/todoActions";
 import { auth } from "@/auth";
-import { redirect } from "next/navigation";
+
 
 export async function DELETE(
   req: NextRequest,
