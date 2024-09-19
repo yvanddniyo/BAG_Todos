@@ -69,7 +69,6 @@ export const useUpdateTodos = () => {
   });
 };
 
-// TODO:  use to toggle the todos list
 export const useToggleTodos = () => {
   const queryClient = useQueryClient();
 
